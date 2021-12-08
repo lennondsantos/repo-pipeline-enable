@@ -23,7 +23,7 @@ pipeline {
 					echo 'teste'
 					sh 'pwd && ls -lha'
 					
-					pomFilePath = "./pom.xml"
+					pomFilePath = "/tmp/workspace/pipeline-spring/pom.xml"
 					
 				}
 			}
