@@ -21,7 +21,7 @@ pipeline {
 				script {
 					git branch: appGitBranch, url: appGitUrl
 					echo 'teste'
-					pwd
+					sh 'pwd && ls -lha'
 				}
 			}
 		}
