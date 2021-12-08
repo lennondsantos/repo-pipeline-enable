@@ -1,4 +1,4 @@
-def appGitBranch, appGitUrl
+def appGitBranch, appGitUrl,pomFilePath = "",projectHomePath = ""
 
 pipeline {
     agent {
@@ -22,9 +22,19 @@ pipeline {
 					git branch: appGitBranch, url: appGitUrl
 					echo 'teste'
 					sh 'pwd && ls -lha'
+					
+					pomFilePath = "./pom.xml"
+					
 				}
 			}
 		}
+		stage ('test') {
+			steps {
+				sh "mvn test -P ${pomFilePath} -f ${pomFilePath}"
+				}
+			}
+		}
+
 
 	}
 }
