@@ -39,19 +39,6 @@ pipeline {
 				}
 			}
 		}
-		stage('Code Analysis') {
-			steps {
-				script {
-					
-						def sonarqubeUrl = "http://sonarqube-custom-cicd-tools.apps.cluster-acf0.acf0.sandbox1465.opentlc.com/about"
-						def sonarMvnParameters = "-Dsonar.login=4f66a62af0699291699f42a43733328e11f29500 -Dsonar.host.url=${sonarqubeUrl} -Dsonar.scm.provider=git -Dsonar.login=544369dd0e49e2fd3c2e63408fc55b4c887dd6f7 -f ${pomFilePath}"
-
-						sh "mvn sonar:sonar ${sonarMvnParameters}"
-
-
-				}
-			}
-		}
 
 	}
 }
