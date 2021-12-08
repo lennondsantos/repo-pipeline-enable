@@ -30,11 +30,10 @@ pipeline {
 		}
 		stage ('test') {
 			steps {
-				sh "mvn test -P ${pomFilePath} -f ${pomFilePath}"
+				script {
+					sh "mvn test -P ${pomFilePath} -f ${pomFilePath}"
 				}
 			}
 		}
-
-
 	}
 }
