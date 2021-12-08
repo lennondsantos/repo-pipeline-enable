@@ -41,7 +41,7 @@ pipeline {
 		stage ('build') {
 			steps {
 				script {
-					sh sh "mvn clean install -DskipTests=true -P ${pomFilePath} -f ${pomFilePath}"
+					sh "mvn clean install -DskipTests=true -P ${pomFilePath} -f ${pomFilePath}"
 				}
 			}
 		}
