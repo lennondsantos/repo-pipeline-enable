@@ -26,13 +26,15 @@ pipeline {
 					
 					pomFilePath = "/tmp/workspace/pipeline-spring/pom.xml"
 					
+					
+					
 				}
 			}
 		}
 		stage ('test') {
 			steps {
 				script {
-					sh "mvn test -P ${pomFilePath} -f ${pomFilePath}"
+					sh "mvn test -P ${pomFilePath} -f ${pomFilePath} DTODO_LIST_EDITABLE=true"
 				}
 			}
 		}
