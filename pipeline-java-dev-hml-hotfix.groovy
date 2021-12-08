@@ -38,5 +38,28 @@ pipeline {
 				}
 			}
 		}
+		stage ('build') {
+			steps {
+				script {
+					sh sh "mvn clean install -DskipTests=true -P ${pomFilePath} -f ${pomFilePath}"
+				}
+			}
+		}
+		stage('Code Analysis') {
+			steps {
+				script {
+					try{
+						def sonarqubeUrl = "http://sonarqube-custom-cicd-tools.apps.cluster-acf0.acf0.sandbox1465.opentlc.com/about"
+						def sonarMvnParameters = "-Dsonar.login=4f66a62af0699291699f42a43733328e11f29500 -Dsonar.host.url=${sonarqubeUrl} -Dsonar.scm.provider=git -Dsonar.login=myAuthenticationToken=544369dd0e49e2fd3c2e63408fc55b4c887dd6f7 -f ${pomFilePath}"
+
+						sh "mvn sonar:sonar ${sonarMvnParameters}"
+
+					} catch(Exception e) {
+						echo "Erro ao chamar o Sonar. - " + e.getMessage()
+					}
+				}
+			}
+		}
+
 	}
 }
