@@ -19,7 +19,8 @@ pipeline {
 		stage ('clone') {
 			steps {
 				script {
-					git branch: appGitBranch, url: appGitUrl	
+					git branch: appGitBranch, url: appGitUrl
+					echo 'teste'
 					pwd
 				}
 			}
