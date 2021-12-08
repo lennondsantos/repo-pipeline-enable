@@ -24,7 +24,7 @@ pipeline {
 					sh 'pwd && ls -lha'
 					sh 'cd /tmp/workspace/pipeline-spring/ && ls -lha'
 					
-					pomFilePath = "/tmp/workspace/pipeline-spring/pom.xml"
+					pomFilePath = "/tmp/workspace/pipeline-spring/target/pom.xml"
 					
 				}
 			}
