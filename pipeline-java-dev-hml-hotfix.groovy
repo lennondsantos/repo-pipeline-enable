@@ -34,7 +34,7 @@ pipeline {
 		stage ('test') {
 			steps {
 				script {
-					sh "mvn test -P ${pomFilePath} -f ${pomFilePath} DTODO_LIST_EDITABLE=true"
+					sh "mvn test -P ${pomFilePath} -f ${pomFilePath} -DTODO_LIST_EDITABLE=true"
 				}
 			}
 		}
