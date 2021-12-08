@@ -20,6 +20,7 @@ pipeline {
 			steps {
 				script {
 					git branch: appGitBranch, url: appGitUrl	
+					pwd
 				}
 			}
 		}
