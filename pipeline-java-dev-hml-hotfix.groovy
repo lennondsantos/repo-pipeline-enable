@@ -19,7 +19,7 @@ pipeline {
 		stage ('clone') {
 			steps {
 				script {
-					git credentialsId: env.GIT_CREDENTIALS, branch: appGitBranch, url: appGitUrl	
+					git branch: appGitBranch, url: appGitUrl	
 				}
 			}
 		}
