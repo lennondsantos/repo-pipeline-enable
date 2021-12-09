@@ -78,7 +78,6 @@ pipeline {
 		stage('Deploy Image created') {
 			steps {
 				script {
-					sh "oc project foo-dev"
 					sh "oc new-app --name=todo-list-backend --image-stream=foo-dev/todo-list-backend:latest"
 				}
 			}
