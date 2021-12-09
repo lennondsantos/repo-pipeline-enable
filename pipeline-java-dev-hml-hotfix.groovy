@@ -61,6 +61,26 @@ pipeline {
 				}
 			}
 		}
-		
+		stage('Create Empty Image with java') {
+			steps {
+				script {
+					sh "oc new-build --name=todo-list-backend --image-stream=java:openjdk-11-ubi8 --binary"
+				}
+			}
+		}
+		stage('Start build Image') {
+			steps {
+				script {	
+					sh "oc start-build todo-list-backend --from-file=target/todo-list-backend-0.0.1-SNAPSHOT.jar -w -F"
+				}
+			}
+		}	
+		stage('Deploy Image created') {
+			steps {
+				script {
+					sh "oc new-app --name=todo-list-backend --image-stream=foo-dev/todo-list-backend:latest"
+				}
+			}
+		}
 	}
 }
