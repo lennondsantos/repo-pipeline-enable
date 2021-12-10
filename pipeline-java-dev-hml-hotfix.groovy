@@ -93,6 +93,21 @@ pipeline {
 					appGitUrl='https://github.com/lennondsantos/repo-config.git'
 					
 					git branch: appGitBranch, url: appGitUrl
+					
+					openshift.withCluster(){
+						openshift.withProject('foo-dev'){
+							//if(openshift.selector('configmap/todo-list-spring-boot').exists()){
+							//
+							//}
+							def files = findFiles(glob: "todo-list-spring-boot/config-map/*.y*ml")
+							for(file in files){
+								openshift.apply(file)
+								//def path = file.path
+								//def yamlFile = readYaml(file: path)
+							}
+							
+						}
+					}
 				}
 			}
 		}
