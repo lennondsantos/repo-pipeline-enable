@@ -94,7 +94,7 @@ pipeline {
 				expression{
 					openshift.withCluster(){
 						openshift.withProject('foo-dev'){
-							return !openshift.selector('dc/todo-list-backend').exists()
+							return !openshift.selector('deployment/todo-list-backend').exists()
 						}
 					}
 				}		  
