@@ -68,7 +68,13 @@ pipeline {
 		//}
 		stage('Create Empty Image with java') {
 			when{
-				expression{return !openshift.selector('bc/todo-list-backend').exists()}	  
+				expression{
+					openshift.withCluster(){
+						openshift.withProject('foo-dev'){
+							return !openshift.selector('bc/todo-list-backend').exists()
+						}
+					}
+				}
 			}
 			steps {
 				script {					
@@ -85,7 +91,13 @@ pipeline {
 		}	
 		stage('Deploy Image created') {
 			when{
-				expression{return !openshift.selector('dc/todo-list-backend').exists()}		  
+				expression{
+					openshift.withCluster(){
+						openshift.withProject('foo-dev'){
+							return !openshift.selector('dc/todo-list-backend').exists()
+						}
+					}
+				}		  
 			}
 			steps {
 				script {
