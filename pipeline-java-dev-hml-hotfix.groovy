@@ -86,5 +86,15 @@ pipeline {
 				}
 			}
 		}
+		stage('Apply configs') {
+			steps {
+				script {
+					appGitBranch='dev'
+					appGitUrl='https://github.com/lennondsantos/repo-config.git'
+					
+					git branch: appGitBranch, url: appGitUrl
+				}
+			}
+		}
 	}
 }
