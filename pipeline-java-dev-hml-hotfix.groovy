@@ -57,13 +57,13 @@ pipeline {
 				}
 			}
 		}
-		stage('Apply role to Jenkins user') {
-			steps {
-				script {					
-					sh "oc policy add-role-to-user edit system:serviceaccount:cicd-tools:jenkins -n foo-dev"
-				}
-			}
-		}
+		//stage('Apply role to Jenkins user') {
+		//	steps {
+		//		script {					
+		//			sh "oc policy add-role-to-user edit system:serviceaccount:cicd-tools:jenkins -n foo-dev"
+		//		}
+		//	}
+		//}
 		stage('Create Empty Image with java') {
 			when{
 				expression{return !openshift.selector('bc/todo-list-backend').exists()}	  
