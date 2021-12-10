@@ -60,7 +60,7 @@ pipeline {
 		stage('Apply role to Jenkins user') {
 			steps {
 				script {					
-					sh "oc policy add-role-to-user edit system:serviceaccount:cicd-tools:jenkins --rolebinding-name=jenkins-edit -n foo-dev"
+					sh "oc policy add-role-to-user edit system:serviceaccount:cicd-tools:jenkins -n foo-dev"
 				}
 			}
 		}
