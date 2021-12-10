@@ -65,9 +65,11 @@ pipeline {
 			}
 		}
 		stage('Create Empty Image with java') {
+			when{
+				expression{return !openshift.selector('bc/todo-list-backend').exists())		  
+			}
 			steps {
-				script {
-					
+				script {					
 					sh "oc new-build --name=todo-list-backend --image-stream=java:openjdk-11-ubi8 --binary -n foo-dev"
 				}
 			}
@@ -80,6 +82,9 @@ pipeline {
 			}
 		}	
 		stage('Deploy Image created') {
+			when{
+				expression{return !openshift.selector('dc/todo-list-backend').exists())		  
+			}
 			steps {
 				script {
 					sh "oc new-app --name=todo-list-backend --image-stream=foo-dev/todo-list-backend:latest -n foo-dev"
