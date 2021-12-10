@@ -41,6 +41,7 @@ pipeline {
 				}
 			}
 		}
+		/*
 		stage('Code Analysis') {
 			steps {
 				script {
@@ -57,6 +58,7 @@ pipeline {
 				}
 			}
 		}
+		*/
 		//stage('Apply role to Jenkins user') {
 		//	steps {
 		//		script {					
