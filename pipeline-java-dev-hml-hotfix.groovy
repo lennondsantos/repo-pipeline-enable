@@ -118,9 +118,12 @@ pipeline {
 							//if(openshift.selector('configmap/todo-list-spring-boot').exists()){
 							//
 							//}
+							
 							def files = findFiles(glob: "todo-list-spring-boot/config-map/*.y*ml")
 							for(file in files){
-								openshift.apply(file)
+								sh "echo ${file.path}"
+								openshift.apply('-f' + file.path + '/' + file.name)
+								//openshift.apply(file)
 								//def path = file.path
 								//def yamlFile = readYaml(file: path)
 							}
