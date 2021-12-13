@@ -121,8 +121,8 @@ pipeline {
 							
 							def files = findFiles(glob: "todo-list-spring-boot/config-map/*.y*ml")
 							for(file in files){
-								sh "echo ${file.path}"
-								openshift.apply('-f' + file.path + '/' + file.name)
+								//sh "echo ${file.path}"
+								openshift.apply('-f ' + file)
 								//openshift.apply(file)
 								//def path = file.path
 								//def yamlFile = readYaml(file: path)
