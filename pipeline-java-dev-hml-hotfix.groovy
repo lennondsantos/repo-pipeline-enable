@@ -122,7 +122,7 @@ pipeline {
 							def files = findFiles(glob: "todo-list-spring-boot/config-map/*.y*ml")
 							for(file in files){
 								openshift.apply('-f ' + file)
-								def fileWithoutExt = file.name.removeExtension()
+								def fileWithoutExt = file.name.take(file.name.lastIndexOf('.'))
 								openshift.apply(openshift.raw("oc set env deploy ${fileWithoutExt} --from=configmap/${fileWithoutExt} "))
 
 							}
