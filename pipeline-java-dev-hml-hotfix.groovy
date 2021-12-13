@@ -121,11 +121,10 @@ pipeline {
 							
 							def files = findFiles(glob: "todo-list-spring-boot/config-map/*.y*ml")
 							for(file in files){
-								//sh "echo ${file.path}"
 								openshift.apply('-f ' + file)
-								//openshift.apply(file)
-								//def path = file.path
-								//def yamlFile = readYaml(file: path)
+								def fileWithoutExt = file.name.removeExtension()
+								openshift.apply(openshift.raw("oc set env deploy ${fileWithoutExt} --from=configmap/${fileWithoutExt} "))
+
 							}
 							
 						}
