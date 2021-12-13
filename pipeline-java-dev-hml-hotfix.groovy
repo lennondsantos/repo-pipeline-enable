@@ -123,7 +123,7 @@ pipeline {
 							for(file in files){
 								openshift.apply('-f ' + file)
 								//def fileWithoutExt = file.name.take(file.name.lastIndexOf('.'))
-								openshift.apply(openshift.raw("oc set env deploy todo-list-backend --from=configmap/todo-list-spring-boot -n foo-dev "))
+								sh "oc set env deploy todo-list-backend --from=configmap/todo-list-spring-boot -n foo-dev "
 
 							}
 							
